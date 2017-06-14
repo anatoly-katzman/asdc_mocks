@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/1710_nfod_csar/1710_nfod_csar.iml" filepath="$PROJECT_DIR$/1710_nfod_csar/1710_nfod_csar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/1710_flavored_service_csar/1710_nfod_csar.iml" filepath="$PROJECT_DIR$/1710_flavored_service_csar/1710_nfod_csar.iml" />
     </modules>
   </component>
 </project>
