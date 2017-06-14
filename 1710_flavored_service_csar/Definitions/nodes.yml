@@ -2371,4 +2371,25 @@ node_types:
       end_point:
         type: tosca.capabilities.Endpoint
         
-  
+    ### Node types related to Deployment Flavors
+    org.openecomp.resource.abstract.nodes.VnfConfiguration:
+        derived_from: tosca.nodes.Root
+        description: a container for the available flavors
+        properties:
+          allowed_flavors:
+            description: a collection of all available flavor valuesets
+            type: map
+            entry_schema: DeploymentFlavor
+
+    #
+    # "Flavored" VFCs will derive from this, instead of the more generic org.openecomp.resource.abstract.nodes.VFC:
+    org.openecomp.resource.abstract.nodes.MultiFlavorVFC:
+        derived_from: org.openecomp.resource.abstract.nodes.VFC
+        description: >
+          A thin abstraction atop of VFC, adds the images property.
+          "Flavored" VFC nodes are derived from this type, instead of the more generic org.openecomp.resource.abstract.nodes.VFC:
+        properties:
+            images:
+                type: map
+                entry_schema: org.openecomp.datatypes.ImageInfo
+                required: false

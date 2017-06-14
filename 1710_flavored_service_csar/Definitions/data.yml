@@ -2239,3 +2239,34 @@ data_types:
           type: string
           required: true
           description: Artifcay URL. Can also include only the file name
+
+    ### Data types related to Deployment Flavors
+    org.openecomp.datatypes.flavors.DeploymentFlavor:
+        properties:
+          sp_part_number: {type: string}
+          vendor_info: {type: org.opencomp.datatypes.flavors.VendorInfo}
+          compute_flavor: { type: org.opencomp.datatypes.flavors.ComputeFlavor}
+          license_flavor: { type: org.opencomp.datatypes.flavors.LicenseFlavor, required: false}
+
+    org.openecomp.datatypes.flavors.ComputeFlavor:
+        properties:
+          num_cpus: {  type: integer}
+          disk_size: { type: scalar-unit.size}
+          mem_size: { type: scalar-unit.size}
+
+    org.openecomp.datatypes.flavors.LicenseFlavor:
+        properties:
+          feature_group_uuid: {type: string}
+
+    org.openecomp.datatypes.flavors.VendorInfo:
+        properties:
+           manufacturer_reference_number: { type: string}
+           vendor_model: { type: string}
+
+    org.openecomp.datatypes.ImageInfo:
+        properties:
+          software_version: {type: string}
+          file_name: {type: string}
+          file_hash: {type: string, description: checksum/signature}
+          file_hash_type: {type: string, required: false, default: md5 }
+
