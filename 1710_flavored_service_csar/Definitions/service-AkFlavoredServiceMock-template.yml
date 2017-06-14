@@ -1,0 +1,60 @@
+tosca_definitions_version: tosca_simple_yaml_1_0
+metadata:
+  invariantUUID: 837bdcf7-c7ff-47d5-98d0-681971aa3844
+  UUID: d84332c6-3113-41f7-b436-0b59ef9dc989
+  name: ak_flavored_service
+  description: ddd
+  type: Service
+  category: Network L4+
+  serviceEcompNaming: true
+  ecompGeneratedNaming: true
+  namingPolicy: ''
+imports:
+- nodes:
+    file: nodes.yml
+- datatypes:
+    file: data.yml
+- capabilities:
+    file: capabilities.yml
+- relationships:
+    file: relationships.yml
+- groups:
+    file: groups.yml
+- policies:
+    file: policies.yml
+- service-ak_flavored_service-interface:
+    file: service-AkFlavoredServiceMock-template-interface.yml
+- resource-ak_flavored_vnf:
+    file: resource-AkFlavoredVnfMock-template.yml
+- resource-ak_flavored_vnf-interface:
+    file: resource-AkFlavoredVnfMock-template-interface.yml
+topology_template:
+  inputs:
+    ak_flavored_vnf_mock0_nf_type:
+      type: string
+      default: FW
+  node_templates:
+    ak_flavored_vnf_mock 0:
+      type: org.openecomp.resource.vf.AkFlavoredVnfMock
+      metadata:
+        invariantUUID: ef17432e-9535-4bdc-86ac-d0e4f801aa1f
+        UUID: a9f24909-3375-4809-9d4f-fb78f82ce3fa
+        customizationUUID: 0a6a662c-9279-47f2-b1cd-8618804569a8
+        version: '0.2'
+        name: ak_flavored_vnf
+        description: ddd
+        type: VF
+        category: Application L4+
+        subcategory: Firewall
+        resourceVendor: Fortinet
+        resourceVendorRelease: v123
+  substitution_mappings:
+    node_type: org.openecomp.service.AkFlavoredService
+    capabilities:
+      ak_flavored_vnf_mock0.extcp0.internal_connectionPoint:
+      - ExtCP 0
+      - extcp0.internal_connectionPoint
+    requirements:
+      ak_flavored_vnf_mock0.extcp0.dependency:
+      - ExtCP 0
+      - extcp0.dependency

@@ -1,0 +1,72 @@
+tosca_definitions_version: tosca_simple_yaml_1_0
+metadata:
+  invariantUUID: ef17432e-9535-4bdc-86ac-d0e4f801aa1f
+  UUID: a9f24909-3375-4809-9d4f-fb78f82ce3fa
+  name: ak_flavored_vnf
+  description: ddd
+  type: VF
+  category: Application L4+
+  subcategory: Firewall
+  resourceVendor: Fortinet
+  resourceVendorRelease: v123
+imports:
+- nodes:
+    file: nodes.yml
+- datatypes:
+    file: data.yml
+- capabilities:
+    file: capabilities.yml
+- relationships:
+    file: relationships.yml
+- groups:
+    file: groups.yml
+- policies:
+    file: policies.yml
+- resource-ak_flavored_vnf-interface:
+    file: resource-AkFlavoredVnfMock-template-interface.yml
+- resource-ExtCP:
+    file: resource-Extcp-template.yml
+topology_template:
+  inputs:
+    nf_naming:
+      type: org.openecomp.datatypes.Naming
+    nf_naming_code:
+      type: string
+    nf_function:
+      type: string
+    availability_zone_max_count:
+      type: integer
+      default: 1
+    nf_role:
+      type: string
+    max_instances:
+      type: integer
+    min_instances:
+      type: integer
+    nf_type:
+      type: string
+  node_templates:
+    ExtCP 0:
+      type: org.openecomp.resource.cp.extCP
+      metadata:
+        invariantUUID: 7b5dbf86-e8b6-4bb6-9d98-a4b89e5a6bf5
+        UUID: 947c7300-17d5-460e-af83-32409a147228
+        customizationUUID: 23e93f1a-a2d9-430d-8e19-53d96665f645
+        version: '1.0'
+        name: ExtCP
+        description: The AT&T Connection Point base type all other CP derive from
+        type: CP
+        category: Generic
+        subcategory: Network Elements
+        resourceVendor: ATT (Tosca)
+        resourceVendorRelease: 1.0.0.wd03
+  substitution_mappings:
+    node_type: org.openecomp.resource.vf.AkFlavoredVnfMock
+    capabilities:
+      extcp0.internal_connectionPoint:
+      - ExtCP 0
+      - internal_connectionPoint
+    requirements:
+      extcp0.dependency:
+      - ExtCP 0
+      - dependency
