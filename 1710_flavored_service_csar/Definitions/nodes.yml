@@ -2379,7 +2379,8 @@ node_types:
           allowed_flavors:
             description: a collection of all available flavor valuesets
             type: map
-            entry_schema: DeploymentFlavor
+            entry_schema:
+              type: DeploymentFlavor
 
     #
     # "Flavored" VFCs will derive from this, instead of the more generic org.openecomp.resource.abstract.nodes.VFC:
@@ -2391,5 +2392,6 @@ node_types:
         properties:
             images:
                 type: map
-                entry_schema: org.openecomp.datatypes.ImageInfo
+                entry_schema:
+                  type: org.openecomp.datatypes.ImageInfo
                 required: false
